@@ -22,7 +22,7 @@ namespace ConsoleFighter
             Player1 = HeroGenerator.GenerateHero();
             Player1.Controller = new Human(ConsoleManager);
             Player2 = HeroGenerator.GenerateHero();
-            Player2.Controller = new Bot();
+            Player2.Controller = new Human(ConsoleManager);
             ConsoleManager = new ConsoleManager(Player1, Player2);
             ConsoleManager.ShowStats();
             while (true)
@@ -35,7 +35,10 @@ namespace ConsoleFighter
                 }
                 Player2.Controller.GetNextAction(Player2, Player1).ExecuteSkill(Player2, Player1);
                 ConsoleManager.ShowStats();
-                CheckLife();
+                if (CheckLife())
+                {
+                    break;
+                }
             }
             while (true)
             {

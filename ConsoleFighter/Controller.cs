@@ -21,7 +21,7 @@ namespace ConsoleFighter
         {
             while (true)
             {
-                Console.WriteLine("What do you want do do?");
+                Console.WriteLine("What do you want do do, " + Attacker.Name + "?");
                 int Counter = 0;
                 foreach (Skill Skill in Attacker.SkillSet)
                 {
