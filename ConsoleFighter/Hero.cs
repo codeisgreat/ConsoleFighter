@@ -12,7 +12,12 @@ namespace ConsoleFighter
         public int Magic;
         public int Magic_Defense;
         public int Speed;
-        public List<Skill> SkillList;
+        public List<Skill> SkillSet;
         public Controller Controller;
+
+        public Hero()
+        {
+            SkillSet = new List<Skill>();
+        }
     }
 }

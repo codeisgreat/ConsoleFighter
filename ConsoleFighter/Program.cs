@@ -14,31 +14,15 @@ namespace ConsoleFighter
         Hero Player1;
         Hero Player2;
         ConsoleManager ConsoleManager;
+        HeroGenerator HeroGenerator;
 
         public Program()
         {
-            Player1 = new Hero()
-            {
-                Name = "Player 1",
-                Health = 100,
-                Attack = 25,
-                Attack_Defense = 10,
-                Magic = 5,
-                Magic_Defense = 10,
-                SkillList = new List<Skill>(new Skill[] { new Attack(), new Wait() }),
-                Controller = new Human(ConsoleManager)
-            };
-            Player2 = new Hero()
-            {
-                Name = "Player 2",
-                Health = 100,
-                Attack = 25,
-                Attack_Defense = 10,
-                Magic = 5,
-                Magic_Defense = 10,
-                SkillList = new List<Skill>(new Skill[] { new Attack(), new Wait() }),
-                Controller = new Bot()
-            };
+            HeroGenerator = new HeroGenerator();
+            Player1 = HeroGenerator.GenerateHero();
+            Player1.Controller = new Human(ConsoleManager);
+            Player2 = HeroGenerator.GenerateHero();
+            Player2.Controller = new Bot();
             ConsoleManager = new ConsoleManager(Player1, Player2);
             ConsoleManager.ShowStats();
             while (true)
@@ -63,12 +47,12 @@ namespace ConsoleFighter
         {
             if (Player1.Health <= 0)
             {
-                ConsoleManager.ShowWinner(Player1);
+                ConsoleManager.ShowWinner(Player2);
                 return true;
             }
             if (Player2.Health <= 0)
             {
-                ConsoleManager.ShowWinner(Player2);
+                ConsoleManager.ShowWinner(Player1);
                 return true;
             }
             return false;

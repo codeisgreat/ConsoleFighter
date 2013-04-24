@@ -23,7 +23,7 @@ namespace ConsoleFighter
             {
                 Console.WriteLine("What do you want do do?");
                 int Counter = 0;
-                foreach (Skill Skill in Attacker.SkillList)
+                foreach (Skill Skill in Attacker.SkillSet)
                 {
                     Console.WriteLine(Counter + ") " + Skill.GetName());
                     Counter++;
@@ -35,9 +35,9 @@ namespace ConsoleFighter
                     InputNumber = Convert.ToInt32(Input);
                 }
                 catch { }
-                if (InputNumber >= 0 && InputNumber < Attacker.SkillList.Count)
+                if (InputNumber >= 0 && InputNumber < Attacker.SkillSet.Count)
                 {
-                    return Attacker.SkillList[InputNumber];
+                    return Attacker.SkillSet[InputNumber];
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace ConsoleFighter
 
         public Skill GetNextAction(Hero Attacker, Hero Defenderr)
         {
-            return Attacker.SkillList[Random.Next(Attacker.SkillList.Count)];
+            return Attacker.SkillSet[Random.Next(Attacker.SkillSet.Count)];
         }
     }
 }

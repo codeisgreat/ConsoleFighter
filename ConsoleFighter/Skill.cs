@@ -80,4 +80,18 @@
             return "Shield";
         }
     }
+
+    public class Sleep : Skill
+    {
+        public void ExecuteSkill(Hero Attacker, Hero Defender)
+        {
+            Attacker.Health += 10;
+        }
+
+
+        public string GetName()
+        {
+            return "Sleep";
+        }
+    }
 }
