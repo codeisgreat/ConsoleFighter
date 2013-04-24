@@ -94,4 +94,19 @@
             return "Sleep";
         }
     }
+
+    public class Soullink : Skill
+    {
+        public void ExecuteSkill(Hero Attacker, Hero Defender)
+        {
+            Attacker.Health += 5;
+            Defender.Health -= 5 + Attacker.Magic - Defender.Magic_Defense;
+        }
+
+
+        public string GetName()
+        {
+            return "Sleep";
+        }
+    }
 }
