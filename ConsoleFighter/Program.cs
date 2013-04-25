@@ -22,18 +22,20 @@ namespace ConsoleFighter
             Player1 = HeroGenerator.GenerateHero();
             Player1.Controller = new Human(ConsoleManager);
             Player2 = HeroGenerator.GenerateHero();
-            Player2.Controller = new Human(ConsoleManager);
+            Player2.Controller = new Bot();
             ConsoleManager = new ConsoleManager(Player1, Player2);
             ConsoleManager.ShowStats();
             while (true)
             {
                 Player1.Controller.GetNextAction(Player1, Player2).ExecuteSkill(Player1, Player2);
+                Console.ReadKey(true); 
                 ConsoleManager.ShowStats();
                 if (CheckLife())
                 {
                     break;
                 }
                 Player2.Controller.GetNextAction(Player2, Player1).ExecuteSkill(Player2, Player1);
+                Console.ReadKey(true);
                 ConsoleManager.ShowStats();
                 if (CheckLife())
                 {
