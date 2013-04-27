@@ -27,12 +27,24 @@ namespace ConsoleFighter
             ConsoleManager.ShowStats();
             while (true)
             {
+                #region Player1
+                foreach (Skill Skill in Player1.SkillSet)
+                {
+                    Skill.RoundPassed(Player1, Player2);
+                }
                 Player1.Controller.GetNextAction(Player1, Player2).ExecuteSkill(Player1, Player2);
-                Console.ReadKey(true); 
+                Console.ReadKey(true);
                 ConsoleManager.ShowStats();
                 if (CheckLife())
                 {
                     break;
+                }
+                #endregion
+
+                #region Player2
+                foreach (Skill Skill in Player2.SkillSet)
+                {
+                    Skill.RoundPassed(Player2, Player1);
                 }
                 Player2.Controller.GetNextAction(Player2, Player1).ExecuteSkill(Player2, Player1);
                 Console.ReadKey(true);
@@ -41,6 +53,7 @@ namespace ConsoleFighter
                 {
                     break;
                 }
+                #endregion
             }
             while (true)
             {
